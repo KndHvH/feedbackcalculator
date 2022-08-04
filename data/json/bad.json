@@ -1,0 +1,1675 @@
+{
+    "bad": [
+        {
+            "bad": "ainda não"
+        },
+        {
+            "bad": "de modo algum"
+        },
+        {
+            "bad": "de jeito nenhum"
+        },
+        {
+            "bad": "de forma alguma"
+        },
+        {
+            "bad": "em hipótese alguma"
+        },
+        {
+            "bad": "já não"
+        },
+        {
+            "bad": "jamais"
+        },
+        {
+            "bad": "nada"
+        },
+        {
+            "bad": "não"
+        },
+        {
+            "bad": "nenhures"
+        },
+        {
+            "bad": "nunca"
+        },
+        {
+            "bad": "nem"
+        },
+        {
+            "bad": "nem mesmo"
+        },
+        {
+            "bad": "nem ao menos"
+        },
+        {
+            "bad": "ninguém"
+        },
+        {
+            "bad": "nunca"
+        },
+        {
+            "bad": "nunca mais"
+        },
+        {
+            "bad": "tão pouco"
+        },
+        {
+            "bad": "não quero"
+        },
+        {
+            "bad": "Mal"
+        },
+        {
+            "bad": "estragar"
+        },
+        {
+            "bad": "nenhum"
+        },
+        {
+            "bad": "perda"
+        },
+        {
+            "bad": "violação  "
+        },
+        {
+            "bad": "inválido  "
+        },
+        {
+            "bad": "Diferença "
+        },
+        {
+            "bad": "incapaz "
+        },
+        {
+            "bad": "Nenhuma "
+        },
+        {
+            "bad": "desperdiçada "
+        },
+        {
+            "bad": "blasfêmia "
+        },
+        {
+            "bad": "contra "
+        },
+        {
+            "bad": "desprezo "
+        },
+        {
+            "bad": "malicioso  "
+        },
+        {
+            "bad": "relutante  "
+        },
+        {
+            "bad": "calúnia "
+        },
+        {
+            "bad": "rude "
+        },
+        {
+            "bad": "insulto "
+        },
+        {
+            "bad": "prejudicial  "
+        },
+        {
+            "bad": "atrevido  "
+        },
+        {
+            "bad": "juras "
+        },
+        {
+            "bad": "impertinentes  "
+        },
+        {
+            "bad": "ataque  "
+        },
+        {
+            "bad": "assustador  "
+        },
+        {
+            "bad": "desagradável  "
+        },
+        {
+            "bad": "Maldito  "
+        },
+        {
+            "bad": "desconfortável  "
+        },
+        {
+            "bad": "Ódio  "
+        },
+        {
+            "bad": "lamentação  "
+        },
+        {
+            "bad": "cruel"
+        },
+        {
+            "bad": "repugnante "
+        },
+        {
+            "bad": "maldade  "
+        },
+        {
+            "bad": "ruindade  "
+        },
+        {
+            "bad": "desuso  "
+        },
+        {
+            "bad": "desutilidade  "
+        },
+        {
+            "bad": "desvantagem  "
+        },
+        {
+            "bad": "impraticabilidade  "
+        },
+        {
+            "bad": "imprestabilidade  "
+        },
+        {
+            "bad": "improficuidade  "
+        },
+        {
+            "bad": "inaplicabilidade  "
+        },
+        {
+            "bad": "incapacidade  "
+        },
+        {
+            "bad": "ineficácia  "
+        },
+        {
+            "bad": "ineficiência  "
+        },
+        {
+            "bad": "infrutuosidade  "
+        },
+        {
+            "bad": "inutilidade  "
+        },
+        {
+            "bad": "nulidade  "
+        },
+        {
+            "bad": "superfluidade  "
+        },
+        {
+            "bad": "austereza  "
+        },
+        {
+            "bad": "insultuoso  "
+        },
+        {
+            "bad": "afrontoso  "
+        },
+        {
+            "bad": "agressivo  "
+        },
+        {
+            "bad": "aviltante  "
+        },
+        {
+            "bad": "blasfematório  "
+        },
+        {
+            "bad": "depreciativo  "
+        },
+        {
+            "bad": "desdenhoso  "
+        },
+        {
+            "bad": "desfavorável  "
+        },
+        {
+            "bad": "desonroso  "
+        },
+        {
+            "bad": "difamatório  "
+        },
+        {
+            "bad": "grosseiro  "
+        },
+        {
+            "bad": "humilhante  "
+        },
+        {
+            "bad": "injurioso  "
+        },
+        {
+            "bad": "insolente  "
+        },
+        {
+            "bad": "insultante  "
+        },
+        {
+            "bad": "malcriado  "
+        },
+        {
+            "bad": "ofensivo  "
+        },
+        {
+            "bad": "detestável  "
+        },
+        {
+            "bad": "malvado  "
+        },
+        {
+            "bad": "abominável  "
+        },
+        {
+            "bad": "abominoso  "
+        },
+        {
+            "bad": "aborrecível  "
+        },
+        {
+            "bad": "amaldiçoado  "
+        },
+        {
+            "bad": "antipático  "
+        },
+        {
+            "bad": "desagradável  "
+        },
+        {
+            "bad": "detestando  "
+        },
+        {
+            "bad": "insuportável  "
+        },
+        {
+            "bad": "intolerável  "
+        },
+        {
+            "bad": "odioso  "
+        },
+        {
+            "bad": "péssimo  "
+        },
+        {
+            "bad": "deplorável  "
+        },
+        {
+            "bad": "execrável"
+        },
+        {
+            "bad": "repulsivo"
+        },
+        {
+            "bad": "Alienado"
+        },
+        {
+            "bad": "AnimaldeTeta"
+        },
+        {
+            "bad": "Anormal"
+        },
+        {
+            "bad": "Argentino"
+        },
+        {
+            "bad": "Arregassado"
+        },
+        {
+            "bad": "Arrombado"
+        },
+        {
+            "bad": "Babaca"
+        },
+        {
+            "bad": "Baitola"
+        },
+        {
+            "bad": "Baleia"
+        },
+        {
+            "bad": "Barril"
+        },
+        {
+            "bad": "Benfiquista"
+        },
+        {
+            "bad": "Biba"
+        },
+        {
+            "bad": "Bicha"
+        },
+        {
+            "bad": "BIOS"
+        },
+        {
+            "bad": "Biroska"
+        },
+        {
+            "bad": "Bobo"
+        },
+        {
+            "bad": "Bocal"
+        },
+        {
+            "bad": "bolagato"
+        },
+        {
+            "bad": "Boqueteiro"
+        },
+        {
+            "bad": "Bosta"
+        },
+        {
+            "bad": "Buceta"
+        },
+        {
+            "bad": "Bundao"
+        },
+        {
+            "bad": "Burro"
+        },
+        {
+            "bad": "Cabaco"
+        },
+        {
+            "bad": "Cacete"
+        },
+        {
+            "bad": "Cadelona"
+        },
+        {
+            "bad": "Cafona"
+        },
+        {
+            "bad": "Cambista"
+        },
+        {
+            "bad": "Capiroto"
+        },
+        {
+            "bad": "Caralho"
+        },
+        {
+            "bad": "Catraia"
+        },
+        {
+            "bad": "Cepo"
+        },
+        {
+            "bad": "Cocodrilo"
+        },
+        {
+            "bad": "Cocozento"
+        },
+        {
+            "bad": "Cu"
+        },
+        {
+            "bad": "DebilMental"
+        },
+        {
+            "bad": "Demente"
+        },
+        {
+            "bad": "Desciclope"
+        },
+        {
+            "bad": "Desgracado"
+        },
+        {
+            "bad": "Drogado"
+        },
+        {
+            "bad": "EGUENORANTE"
+        },
+        {
+            "bad": "Endemoniado"
+        },
+        {
+            "bad": "Energumeno"
+        },
+        {
+            "bad": "Enfianocu"
+        },
+        {
+            "bad": "EngoleRola"
+        },
+        {
+            "bad": "Escroto"
+        },
+        {
+            "bad": "Esdruxulo"
+        },
+        {
+            "bad": "Esporrado"
+        },
+        {
+            "bad": "Estigalhado"
+        },
+        {
+            "bad": "Estrume"
+        },
+        {
+            "bad": "Estrunxado"
+        },
+        {
+            "bad": "Estupido"
+        },
+        {
+            "bad": "FDP"
+        },
+        {
+            "bad": "Fidumaegua"
+        },
+        {
+            "bad": "FilhodaPuta"
+        },
+        {
+            "bad": "Fiofo"
+        },
+        {
+            "bad": "Foda"
+        },
+        {
+            "bad": "Fuder"
+        },
+        {
+            "bad": "Fudido"
+        },
+        {
+            "bad": "Fulera"
+        },
+        {
+            "bad": "Galinha"
+        },
+        {
+            "bad": "Gambiarra"
+        },
+        {
+            "bad": "GeisyArruda"
+        },
+        {
+            "bad": "Gnu"
+        },
+        {
+            "bad": "Gonorreia"
+        },
+        {
+            "bad": "GordoEscroto"
+        },
+        {
+            "bad": "Gozado"
+        },
+        {
+            "bad": "Herege"
+        },
+        {
+            "bad": "Idiota"
+        },
+        {
+            "bad": "Ignorante"
+        },
+        {
+            "bad": "Imbecil"
+        },
+        {
+            "bad": "Imundo"
+        },
+        {
+            "bad": "Inascivel"
+        },
+        {
+            "bad": "Inseto"
+        },
+        {
+            "bad": "Invertebrado"
+        },
+        {
+            "bad": "Jacu"
+        },
+        {
+            "bad": "Jegue"
+        },
+        {
+            "bad": "Jumento"
+        },
+        {
+            "bad": "KCT"
+        },
+        {
+            "bad": "Komodo"
+        },
+        {
+            "bad": "Ku"
+        },
+        {
+            "bad": "lazarento"
+        },
+        {
+            "bad": "Lazaro!"
+        },
+        {
+            "bad": "Leproso"
+        },
+        {
+            "bad": "lerdo"
+        },
+        {
+            "bad": "lesma"
+        },
+        {
+            "bad": "Lezado"
+        },
+        {
+            "bad": "lico"
+        },
+        {
+            "bad": "Limpezaanal"
+        },
+        {
+            "bad": "lixo"
+        },
+        {
+            "bad": "lombriga"
+        },
+        {
+            "bad": "Macaco"
+        },
+        {
+            "bad": "MariMoon"
+        },
+        {
+            "bad": "Merda"
+        },
+        {
+            "bad": "Meretriz"
+        },
+        {
+            "bad": "MiolodeCu"
+        },
+        {
+            "bad": "Mocorongo"
+        },
+        {
+            "bad": "MontedeMerda"
+        },
+        {
+            "bad": "Morfetico"
+        },
+        {
+            "bad": "Mulambo"
+        },
+        {
+            "bad": "n00b"
+        },
+        {
+            "bad": "Nazista"
+        },
+        {
+            "bad": "Nerd"
+        },
+        {
+            "bad": "Newbie"
+        },
+        {
+            "bad": "Nhaca"
+        },
+        {
+            "bad": "Nonsense"
+        },
+        {
+            "bad": "Ogro"
+        },
+        {
+            "bad": "Olhodocu"
+        },
+        {
+            "bad": "OlhoGordo"
+        },
+        {
+            "bad": "Otario"
+        },
+        {
+            "bad": "Palhaco"
+        },
+        {
+            "bad": "Panaca"
+        },
+        {
+            "bad": "Paraguaio"
+        },
+        {
+            "bad": "Passaralho"
+        },
+        {
+            "bad": "PauNoCu"
+        },
+        {
+            "bad": "Periquita"
+        },
+        {
+            "bad": "Pimenteira"
+        },
+        {
+            "bad": "Pipoca"
+        },
+        {
+            "bad": "Piranha"
+        },
+        {
+            "bad": "Piroca"
+        },
+        {
+            "bad": "Pistoleira"
+        },
+        {
+            "bad": "Porra"
+        },
+        {
+            "bad": "prostituta"
+        },
+        {
+            "bad": "Punheta"
+        },
+        {
+            "bad": "Puta"
+        },
+        {
+            "bad": "PutaQuePariu"
+        },
+        {
+            "bad": "Quasimodo"
+        },
+        {
+            "bad": "Quenga"
+        },
+        {
+            "bad": "Quirguistao"
+        },
+        {
+            "bad": "Rampero"
+        },
+        {
+            "bad": "Rapariga"
+        },
+        {
+            "bad": "Raspadinha"
+        },
+        {
+            "bad": "Retardado"
+        },
+        {
+            "bad": "Rusguento"
+        },
+        {
+            "bad": "Sanguesuga"
+        },
+        {
+            "bad": "Sujo"
+        },
+        {
+            "bad": "Tapado"
+        },
+        {
+            "bad": "Tarado"
+        },
+        {
+            "bad": "Tesao"
+        },
+        {
+            "bad": "Tetuda"
+        },
+        {
+            "bad": "Tetudo"
+        },
+        {
+            "bad": "Tosco"
+        },
+        {
+            "bad": "Tragado"
+        },
+        {
+            "bad": "Travesti"
+        },
+        {
+            "bad": "Trepadeira"
+        },
+        {
+            "bad": "Troglodita"
+        },
+        {
+            "bad": "Urubu"
+        },
+        {
+            "bad": "Vaca"
+        },
+        {
+            "bad": "Vadia"
+        },
+        {
+            "bad": "Vagabundo"
+        },
+        {
+            "bad": "Vagaranha"
+        },
+        {
+            "bad": "Vaiamerda"
+        },
+        {
+            "bad": "vaisefuder"
+        },
+        {
+            "bad": "Vaitomarnocu"
+        },
+        {
+            "bad": "Vascaino"
+        },
+        {
+            "bad": "Verme"
+        },
+        {
+            "bad": "Viado"
+        },
+        {
+            "bad": "Xavasca"
+        },
+        {
+            "bad": "Xereca"
+        },
+        {
+            "bad": "Xixizento"
+        },
+        {
+            "bad": "Xoxota"
+        },
+        {
+            "bad": "Xupetinha"
+        },
+        {
+            "bad": "Xupisco"
+        },
+        {
+            "bad": "Xurupita"
+        },
+        {
+            "bad": "Xuxexo"
+        },
+        {
+            "bad": "XXT"
+        },
+        {
+            "bad": "XXX"
+        },
+        {
+            "bad": "ZeBuceta"
+        },
+        {
+            "bad": "Ziguizira"
+        },
+        {
+            "bad": "Zina"
+        },
+        {
+            "bad": "Zoado"
+        },
+        {
+            "bad": "Zoiudo"
+        },
+        {
+            "bad": "Zoneira"
+        },
+        {
+            "bad": "Zuado"
+        },
+        {
+            "bad": "Zuera"
+        },
+        {
+            "bad": "Zulu"
+        },
+        {
+            "bad": "Zureta"
+        },
+        {
+            "bad": "ANUS"
+        },
+        {
+            "bad": "BABA-OVO"
+        },
+        {
+            "bad": "BABAOVO"
+        },
+        {
+            "bad": "BABACA"
+        },
+        {
+            "bad": "BACURA"
+        },
+        {
+            "bad": "BAGOS"
+        },
+        {
+            "bad": "BAITOLA"
+        },
+        {
+            "bad": "BEBUM"
+        },
+        {
+            "bad": "BESTA"
+        },
+        {
+            "bad": "BICHA"
+        },
+        {
+            "bad": "BISCA"
+        },
+        {
+            "bad": "BIXA"
+        },
+        {
+            "bad": "BOAZUDA"
+        },
+        {
+            "bad": "BOCETA"
+        },
+        {
+            "bad": "BOCO"
+        },
+        {
+            "bad": "BOIOLA"
+        },
+        {
+            "bad": "BOLAGATO"
+        },
+        {
+            "bad": "BOQUETE"
+        },
+        {
+            "bad": "BOLCAT"
+        },
+        {
+            "bad": "BOSSETA"
+        },
+        {
+            "bad": "BOSTA"
+        },
+        {
+            "bad": "BOSTANA"
+        },
+        {
+            "bad": "BRECHA"
+        },
+        {
+            "bad": "BREXA"
+        },
+        {
+            "bad": "BRIOCO"
+        },
+        {
+            "bad": "BRONHA"
+        },
+        {
+            "bad": "BUCA"
+        },
+        {
+            "bad": "BUCETA"
+        },
+        {
+            "bad": "BUNDA"
+        },
+        {
+            "bad": "BUNDUDA"
+        },
+        {
+            "bad": "BURRA"
+        },
+        {
+            "bad": "BURRO"
+        },
+        {
+            "bad": "BUSSETA"
+        },
+        {
+            "bad": "CACHORRA"
+        },
+        {
+            "bad": "CACHORRO"
+        },
+        {
+            "bad": "CADELA"
+        },
+        {
+            "bad": "CAGA"
+        },
+        {
+            "bad": "CAGADO"
+        },
+        {
+            "bad": "CAGAO"
+        },
+        {
+            "bad": "CAGONA"
+        },
+        {
+            "bad": "CANALHA"
+        },
+        {
+            "bad": "CARALHO"
+        },
+        {
+            "bad": "CASSETA"
+        },
+        {
+            "bad": "CASSETE"
+        },
+        {
+            "bad": "CHECHECA"
+        },
+        {
+            "bad": "CHERECA"
+        },
+        {
+            "bad": "CHIBUMBA"
+        },
+        {
+            "bad": "CHIBUMBO"
+        },
+        {
+            "bad": "CHIFRUDA"
+        },
+        {
+            "bad": "CHIFRUDO"
+        },
+        {
+            "bad": "CHOTA"
+        },
+        {
+            "bad": "CHOCHOTA"
+        },
+        {
+            "bad": "CHUPADA"
+        },
+        {
+            "bad": "CHUPADO"
+        },
+        {
+            "bad": "CLITORIS"
+        },
+        {
+            "bad": "CLIT+RIS"
+        },
+        {
+            "bad": "COCAINA"
+        },
+        {
+            "bad": "COCA-NA"
+        },
+        {
+            "bad": "COCO"
+        },
+        {
+            "bad": "CORNA"
+        },
+        {
+            "bad": "CORNO"
+        },
+        {
+            "bad": "CORNUDA"
+        },
+        {
+            "bad": "CORNUDO"
+        },
+        {
+            "bad": "CORRUPTA"
+        },
+        {
+            "bad": "CORRUPTO"
+        },
+        {
+            "bad": "CRETINA"
+        },
+        {
+            "bad": "CRETINO"
+        },
+        {
+            "bad": "CRUZ-CREDO"
+        },
+        {
+            "bad": "CU"
+        },
+        {
+            "bad": "CULHAO"
+        },
+        {
+            "bad": "CULH+O"
+        },
+        {
+            "bad": "CULH+ES"
+        },
+        {
+            "bad": "CURALHO"
+        },
+        {
+            "bad": "CUZAO"
+        },
+        {
+            "bad": "CUZ+O"
+        },
+        {
+            "bad": "CUZUDA"
+        },
+        {
+            "bad": "CUZUDO"
+        },
+        {
+            "bad": "DEBIL"
+        },
+        {
+            "bad": "DEBILOIDE"
+        },
+        {
+            "bad": "DEFUNTO"
+        },
+        {
+            "bad": "DEMONIO"
+        },
+        {
+            "bad": "DEM+NIO"
+        },
+        {
+            "bad": "DIFUNTO"
+        },
+        {
+            "bad": "DOIDA"
+        },
+        {
+            "bad": "DOIDO"
+        },
+        {
+            "bad": "EGUA"
+        },
+        {
+            "bad": "ESCROTA"
+        },
+        {
+            "bad": "ESCROTO"
+        },
+        {
+            "bad": "ESPORRADA"
+        },
+        {
+            "bad": "ESPORRADO"
+        },
+        {
+            "bad": "ESPORRO"
+        },
+        {
+            "bad": "ESP+RRO"
+        },
+        {
+            "bad": "ESTUPIDA"
+        },
+        {
+            "bad": "EST+PIDA"
+        },
+        {
+            "bad": "ESTUPIDEZ"
+        },
+        {
+            "bad": "ESTUPIDO"
+        },
+        {
+            "bad": "FEDIDA"
+        },
+        {
+            "bad": "FEDIDO"
+        },
+        {
+            "bad": "FEDOR"
+        },
+        {
+            "bad": "FEDORENTA"
+        },
+        {
+            "bad": "FEIA"
+        },
+        {
+            "bad": "FEIO"
+        },
+        {
+            "bad": "FEIOSA"
+        },
+        {
+            "bad": "FEIOSO"
+        },
+        {
+            "bad": "FEIOZA"
+        },
+        {
+            "bad": "FEIOZO"
+        },
+        {
+            "bad": "FELACAO"
+        },
+        {
+            "bad": "FENDA"
+        },
+        {
+            "bad": "FODA"
+        },
+        {
+            "bad": "FODAO"
+        },
+        {
+            "bad": "FOD+O"
+        },
+        {
+            "bad": "FODE"
+        },
+        {
+            "bad": "FODIDA"
+        },
+        {
+            "bad": "FODIDO"
+        },
+        {
+            "bad": "FORNICA"
+        },
+        {
+            "bad": "FUDENDO"
+        },
+        {
+            "bad": "FUDECAO"
+        },
+        {
+            "bad": "FUDIDA"
+        },
+        {
+            "bad": "FUDIDO"
+        },
+        {
+            "bad": "FURADA"
+        },
+        {
+            "bad": "FURADO"
+        },
+        {
+            "bad": "FURAO"
+        },
+        {
+            "bad": "FURNICA"
+        },
+        {
+            "bad": "FURNICAR"
+        },
+        {
+            "bad": "FURO"
+        },
+        {
+            "bad": "FURONA"
+        },
+        {
+            "bad": "GAIATA"
+        },
+        {
+            "bad": "GAIATO"
+        },
+        {
+            "bad": "GAY"
+        },
+        {
+            "bad": "GONORREA"
+        },
+        {
+            "bad": "GONORREIA"
+        },
+        {
+            "bad": "GOSMA"
+        },
+        {
+            "bad": "GOSMENTA"
+        },
+        {
+            "bad": "GOSMENTO"
+        },
+        {
+            "bad": "GRELINHO"
+        },
+        {
+            "bad": "GRELO"
+        },
+        {
+            "bad": "HOMO-SEXUAL"
+        },
+        {
+            "bad": "HOMOSEXUAL"
+        },
+        {
+            "bad": "HOMOSSEXUAL"
+        },
+        {
+            "bad": "IDIOTA"
+        },
+        {
+            "bad": "IDIOTICE"
+        },
+        {
+            "bad": "IMBECIL"
+        },
+        {
+            "bad": "ISCROTA"
+        },
+        {
+            "bad": "ISCROTO"
+        },
+        {
+            "bad": "JAPA"
+        },
+        {
+            "bad": "LADRA"
+        },
+        {
+            "bad": "LADRAO"
+        },
+        {
+            "bad": "LADR+O"
+        },
+        {
+            "bad": "LADROEIRA"
+        },
+        {
+            "bad": "LADRONA"
+        },
+        {
+            "bad": "LALAU"
+        },
+        {
+            "bad": "LEPROSA"
+        },
+        {
+            "bad": "LEPROSO"
+        },
+        {
+            "bad": "LESBICA"
+        },
+        {
+            "bad": "MACACA"
+        },
+        {
+            "bad": "MACACO"
+        },
+        {
+            "bad": "MACHONA"
+        },
+        {
+            "bad": "MACHORRA"
+        },
+        {
+            "bad": "MANGUACA"
+        },
+        {
+            "bad": "MASTURBA"
+        },
+        {
+            "bad": "MELECA"
+        },
+        {
+            "bad": "MERDA"
+        },
+        {
+            "bad": "MIJA"
+        },
+        {
+            "bad": "MIJADA"
+        },
+        {
+            "bad": "MIJADO"
+        },
+        {
+            "bad": "MIJO"
+        },
+        {
+            "bad": "MOCREA"
+        },
+        {
+            "bad": "MOCREIA"
+        },
+        {
+            "bad": "MOLECA"
+        },
+        {
+            "bad": "MOLEQUE"
+        },
+        {
+            "bad": "MONDRONGA"
+        },
+        {
+            "bad": "MONDRONGO"
+        },
+        {
+            "bad": "NABA"
+        },
+        {
+            "bad": "NADEGA"
+        },
+        {
+            "bad": "NOJEIRA"
+        },
+        {
+            "bad": "NOJENTA"
+        },
+        {
+            "bad": "NOJENTO"
+        },
+        {
+            "bad": "NOJO"
+        },
+        {
+            "bad": "OLHOTA"
+        },
+        {
+            "bad": "OTARIA"
+        },
+        {
+            "bad": "OT-RIA"
+        },
+        {
+            "bad": "OTARIO"
+        },
+        {
+            "bad": "PACA"
+        },
+        {
+            "bad": "PASPALHA"
+        },
+        {
+            "bad": "PASPALHAO"
+        },
+        {
+            "bad": "PASPALHO"
+        },
+        {
+            "bad": "PAU"
+        },
+        {
+            "bad": "PEIA"
+        },
+        {
+            "bad": "PEIDO"
+        },
+        {
+            "bad": "PEMBA"
+        },
+        {
+            "bad": "PENIS"
+        },
+        {
+            "bad": "P-NIS"
+        },
+        {
+            "bad": "PENTELHA"
+        },
+        {
+            "bad": "PENTELHO"
+        },
+        {
+            "bad": "PERERECA"
+        },
+        {
+            "bad": "PERU"
+        },
+        {
+            "bad": "PICA"
+        },
+        {
+            "bad": "PICAO"
+        },
+        {
+            "bad": "PIC+O"
+        },
+        {
+            "bad": "PILANTRA"
+        },
+        {
+            "bad": "PIRANHA"
+        },
+        {
+            "bad": "PIROCA"
+        },
+        {
+            "bad": "PIROCO"
+        },
+        {
+            "bad": "PIRU"
+        },
+        {
+            "bad": "PORRA"
+        },
+        {
+            "bad": "PREGA"
+        },
+        {
+            "bad": "PROSTIBULO"
+        },
+        {
+            "bad": "PROSTITUTA"
+        },
+        {
+            "bad": "PROSTITUTO"
+        },
+        {
+            "bad": "PUNHETA"
+        },
+        {
+            "bad": "PUNHETAO"
+        },
+        {
+            "bad": "PUNHET+O"
+        },
+        {
+            "bad": "PUS"
+        },
+        {
+            "bad": "PUTA"
+        },
+        {
+            "bad": "PUTO"
+        },
+        {
+            "bad": "PUXA-SACO"
+        },
+        {
+            "bad": "PUXASACO"
+        },
+        {
+            "bad": "RABAO"
+        },
+        {
+            "bad": "RAB+O"
+        },
+        {
+            "bad": "RABO"
+        },
+        {
+            "bad": "RABUDA"
+        },
+        {
+            "bad": "RABUDAO"
+        },
+        {
+            "bad": "RABUD+O"
+        },
+        {
+            "bad": "RABUDO"
+        },
+        {
+            "bad": "RABUDONA"
+        },
+        {
+            "bad": "RACHA"
+        },
+        {
+            "bad": "RACHADA"
+        },
+        {
+            "bad": "RACHADAO"
+        },
+        {
+            "bad": "RACHAD+O"
+        },
+        {
+            "bad": "RACHADINHA"
+        },
+        {
+            "bad": "RACHADINHO"
+        },
+        {
+            "bad": "RACHADO"
+        },
+        {
+            "bad": "RAMELA"
+        },
+        {
+            "bad": "REMELA"
+        },
+        {
+            "bad": "RETARDADA"
+        },
+        {
+            "bad": "RETARDADO"
+        },
+        {
+            "bad": "RIDICULA"
+        },
+        {
+            "bad": "ROLA"
+        },
+        {
+            "bad": "ROLINHA"
+        },
+        {
+            "bad": "ROSCA"
+        },
+        {
+            "bad": "SACANA"
+        },
+        {
+            "bad": "SAFADA"
+        },
+        {
+            "bad": "SAFADO"
+        },
+        {
+            "bad": "SAPATAO"
+        },
+        {
+            "bad": "SIFILIS"
+        },
+        {
+            "bad": "S-FILIS"
+        },
+        {
+            "bad": "SIRIRICA"
+        },
+        {
+            "bad": "TARADA"
+        },
+        {
+            "bad": "TARADO"
+        },
+        {
+            "bad": "TESTUDA"
+        },
+        {
+            "bad": "TEZAO"
+        },
+        {
+            "bad": "TEZ+O"
+        },
+        {
+            "bad": "TEZUDA"
+        },
+        {
+            "bad": "TEZUDO"
+        },
+        {
+            "bad": "TROCHA"
+        },
+        {
+            "bad": "TROLHA"
+        },
+        {
+            "bad": "TROUCHA"
+        },
+        {
+            "bad": "TROUXA"
+        },
+        {
+            "bad": "TROXA"
+        },
+        {
+            "bad": "VACA"
+        },
+        {
+            "bad": "VAGABUNDA"
+        },
+        {
+            "bad": "VAGABUNDO"
+        },
+        {
+            "bad": "VAGINA"
+        },
+        {
+            "bad": "VEADA"
+        },
+        {
+            "bad": "VEADAO"
+        },
+        {
+            "bad": "VEAD+O"
+        },
+        {
+            "bad": "VEADO"
+        },
+        {
+            "bad": "VIADA"
+        },
+        {
+            "bad": "VIADO"
+        },
+        {
+            "bad": "VIADAO"
+        },
+        {
+            "bad": "XAVASCA"
+        },
+        {
+            "bad": "XERERECA"
+        },
+        {
+            "bad": "XEXECA"
+        },
+        {
+            "bad": "XIBIU"
+        },
+        {
+            "bad": "XIBUMBA"
+        },
+        {
+            "bad": "XOTA"
+        },
+        {
+            "bad": "XOCHOTA"
+        },
+        {
+            "bad": "XOXOTA"
+        },
+        {
+            "bad": "XANA"
+        },
+        {
+            "bad": "XANINHA"
+        }
+    ]
+}
