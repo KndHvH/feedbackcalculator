@@ -41,3 +41,4 @@ for feed in feedList:
 results = getSimpleResult(results)
 resultsJson = json.dumps(results)
 print(resultsJson)
+print(resultsJson)
