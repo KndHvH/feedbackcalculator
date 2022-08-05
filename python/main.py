@@ -14,7 +14,7 @@ badList = apiBad()
 
 # test.json file import (test only)
 feedList=[]
-df = pd.read_csv("dataTest.csv",sep=';')
+df = "O creme é grosso mas simplesmente derrete na pele, não fica nada oleoso, deixa a pele super macia e hidratada sem ficar peguenta, não deixa resíduo e nem aquele “filme” que alguns hidratantes deixam. O cheiro é sensacional, bem docinho com um fundo cítrico maravilhoso. Simplesmente amei, já acabei a amostrinha de 25ml que recebi e já quero comprar o full size. Espero que a sephora traga as fragrâncias da marca!"
 list=df.values.tolist()
 
 for i in range(len(list)):
@@ -37,3 +37,4 @@ data = listSplit(results)
 
 df = pd.DataFrame({"Feedback": feedList, "Score":data[0],"Result":data[1]})
 df.to_excel("results.xlsx")
+
