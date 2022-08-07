@@ -28,6 +28,8 @@ def main():
     goodList = apiGood()
     badList = apiBad()
 
+    trigger = 0
+
     st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg")
 
     st.title("Feedback Calculator")
@@ -42,13 +44,13 @@ def main():
 
         if data is not None or text is not None:
 
-            clicked = st.button("Add")
-            if clicked:
 
+            if st.button("Add"):
+                trigger = 1
                 my_bar = st.progress(0)
 
 
-                if data is not none:
+                if data is not None:
 
                     df = pd.read_csv(data, sep=';')
                     list = df.values.tolist()
@@ -62,11 +64,13 @@ def main():
 
 
                 for percent_complete in range(100):
-                    time.sleep(0.1)
+                    time.sleep(0.05)
                     my_bar.progress(percent_complete + 1)
 
-                st.success("Feedback Added!")
-
+                    if trigger == 1:
+                        st.success("Feedback Added!")
+                        time.sleep(5)
+                        trigger = 0
 
 
     with tab2:
@@ -83,7 +87,7 @@ def main():
             if st.button("Check Results"):
                 my_bar = st.progress(0)
                 results = {}
-
+                trigger = 1
 
                 i = 1
                 for feed in feedList:
@@ -111,14 +115,25 @@ def main():
                 neutral = (df.count()[0])-(positive+negative)
 
                 for percent_complete in range(100):
-                    time.sleep(0.1)
+                    time.sleep(0.05)
                     my_bar.progress(percent_complete + 1)
 
-                st.success("Feedback Calculated!")
-                st.balloons()
+
+                if trigger == 1:
+                    st.success("Feedback Calculated!")
+                    st.balloons()
+                    time.sleep(5)
+                    trigger = 0
+
+                st.subheader("Result Table")
+                st.table(df)
+
+                st.subheader("Download Table")
+                with open('results.xlsx', 'rb') as f:
+                    st.download_button('Download Table', f,
+                                       file_name='results.xlsx')
 
 
-                # show
 
 
                 if st.button("Delete input data"):
