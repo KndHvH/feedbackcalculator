@@ -11,19 +11,17 @@ from pyngrok import ngrok
 from unidecode import unidecode
 from PIL import Image
 
-st.write("Streamlit version:", st.__version__)
+feedList = []
+results = {}
+positive = 0
+neutral = 0
+negative = 0
+
+oldPositive = positive
+oldNeutral = neutral
+oldNegative = negative
 
 def main():
-
-    feedList = []
-
-    positive = 0
-    neutral = 0
-    negative = 0
-
-    oldPositive = positive
-    oldNeutral = neutral
-    oldNegative = negative
 
     goodList = apiGood()
     badList = apiBad()
@@ -64,7 +62,6 @@ def main():
 
 
                 for percent_complete in range(100):
-                    time.sleep(0.05)
                     my_bar.progress(percent_complete + 1)
 
                     if trigger == 1:
@@ -86,7 +83,7 @@ def main():
 
             if st.button("Check Results"):
                 my_bar = st.progress(0)
-                results = {}
+
                 trigger = 1
 
                 i = 1
@@ -128,7 +125,7 @@ def main():
                 st.subheader("Result Table")
                 st.table(df)
 
-                st.subheader("Download Table")
+                st.subheader("Manage table")
                 with open('results.xlsx', 'rb') as f:
                     st.download_button('Download Table', f,
                                        file_name='results.xlsx')
@@ -142,7 +139,6 @@ def main():
                     data = None
                     my_bar = st.progress(0)
                     for percent_complete in range(100):
-                        time.sleep(0.1)
                         my_bar.progress(percent_complete + 1)
 
 
