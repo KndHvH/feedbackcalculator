@@ -11,7 +11,7 @@ from pyngrok import ngrok
 from unidecode import unidecode
 from PIL import Image
 
-
+st.write("Streamlit version:", st.__version__)
 
 def main():
 
