@@ -31,6 +31,7 @@ for feed in feedList:
     results[i]=[feed,finalScore]
     i=i+1
 
+
 results = getSimpleResult(results)
 data = listSplit(results)
 
