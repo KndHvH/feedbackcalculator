@@ -14,9 +14,10 @@ from PIL import Image
 
 
 def main():
+
     feedList = []
     results = {}
-    positive = 0
+    positive = 1
     neutral = 0
     negative = 0
 
@@ -65,10 +66,10 @@ def main():
                 for percent_complete in range(100):
                     my_bar.progress(percent_complete + 1)
 
-                    if trigger == 1:
-                        st.success("Feedback Added!")
-                        time.sleep(5)
-                        trigger = 0
+                if trigger == 1:
+                    st.success("Feedback Added!")
+                    time.sleep(5)
+                    trigger = 0
 
 
     with tab2:
@@ -141,6 +142,8 @@ def main():
                     my_bar = st.progress(0)
                     for percent_complete in range(100):
                         my_bar.progress(percent_complete + 1)
+
+
 
 
 
