@@ -14,21 +14,25 @@ from PIL import Image
 
 
 def main():
+    @st.cache
+    def bind_socket():
+        feedList = []
+        results = {}
+        positive = 0
+        neutral = 0
+        negative = 0
 
-    feedList = []
-    results = {}
-    positive = 1
-    neutral = 0
-    negative = 0
+        oldPositive = positive
+        oldNeutral = neutral
+        oldNegative = negative
 
-    oldPositive = positive
-    oldNeutral = neutral
-    oldNegative = negative
+        goodList = apiGood()
+        badList = apiBad()
 
-    goodList = apiGood()
-    badList = apiBad()
+        trigger = 0
 
-    trigger = 0
+    bind_socket()
+
 
     st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg")
 
@@ -64,6 +68,7 @@ def main():
 
 
                 for percent_complete in range(100):
+                    time.sleep(0.005)
                     my_bar.progress(percent_complete + 1)
 
                 if trigger == 1:
@@ -141,6 +146,7 @@ def main():
                     data = None
                     my_bar = st.progress(0)
                     for percent_complete in range(100):
+                        time.sleep(0.005)
                         my_bar.progress(percent_complete + 1)
 
 
