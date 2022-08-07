@@ -14,12 +14,16 @@ from unidecode import unidecode
 
 def main():
 
-    html_temp = """ <div style ="background-color:blue;padding:20px">
-                      <h1 style = "color:white;text-align:center;">Verificador Imigração - PFA</h1>
+    html_temp = """ <div style ="background-color:cyan;padding:30px">
+                      <h1 style = "color:white;text-align:center;">Feedback Calculator</h1>
                     </dic>
                 """
 
     st.markdown(html_temp, unsafe_allow_html = True)
+    c = st.container()
+    st.write("This will show last")
+    c.write("This will show first")
+    c.write("This will show second")
 
     #json api import
     goodList = apiGood()
