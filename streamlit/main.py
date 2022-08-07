@@ -4,6 +4,7 @@ import requests as req
 import re
 import json
 import pandas as pd
+import time
 from fuzzywuzzy import process
 from fuzzywuzzy import fuzz
 from pyngrok import ngrok
@@ -14,6 +15,15 @@ from PIL import Image
 
 def main():
 
+    feedList = []
+
+    positive = 0
+    neutral = 0
+    negative = 0
+
+    oldPositive = positive
+    oldNeutral = neutral
+    oldNegative = negative
 
     goodList = apiGood()
     badList = apiBad()
@@ -23,44 +33,106 @@ def main():
     st.title("Feedback Calculator")
 
     tab1, tab2 = st.tabs(["Import Data", "Results"])
-    tab1.write("this is tab 1")
+    with tab1:
+        st.header("Import Data")
+        # upload text
+        text = st.text_area("Single Feedback")
+        # upload csv
+        data = st.file_uploader("Multiple Feedback", type="csv")
+
+        if data is not None or text is not None:
+
+            clicked = st.button("Add")
+            if clicked:
+
+                my_bar = st.progress(0)
+
+
+                if data is not none:
+
+                    df = pd.read_csv(data, sep=';')
+                    list = df.values.tolist()
+
+                    for i in range(len(list)):
+                        feedList.append(unidecode(list[i][0]))
+                else:
+                    feedList.append(unidecode(text))
 
 
 
-    #upload text
-    text = st.text_area("Single Feedback")
-    #upload csv
-    data = st.file_uploader("Multiple Feedback",type="csv")
-    tab2.write("this is tab 2")
-    st.markdown("# FeedBack calculator")
 
-    clicked = st.button("Click me")
+                for percent_complete in range(100):
+                    time.sleep(0.1)
+                    my_bar.progress(percent_complete + 1)
 
-    feedList=[]
-    df = pd.read_csv("dataTest.csv",sep=';')
-    list=df.values.tolist()
-
-    for i in range(len(list)):
-        feedList.append(unidecode(list[i][0]))
+                st.success("Feedback Added!")
 
 
-    results={}
 
-    i=1
-    #score generator
-    for feed in feedList:
-        goodScore = getGoodMatch(feed,goodList)
-        badScore = getBadMatch(feed,badList)
-        finalScore = goodScore[0] - badScore[0]
-        results[i]=[feed,finalScore]
-        i=i+1
-
-    results = getSimpleResult(results)
-    data = listSplit(results)
+    with tab2:
+        st.header("Results")
 
 
-    df = pd.DataFrame({"Feedback": feedList, "Score":data[0],"Result":data[1]})
-    df.to_excel("results.xlsx")
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Positives", positive, positive-oldPositive)
+        col2.metric("Neutral", neutral, neutral - oldNeutral,delta_color="off")
+        col3.metric("Negatives",negative , negative - oldNegative ,delta_color="inverse")
+
+        if data is not None or text is not None:
+
+            if st.button("Check Results"):
+                my_bar = st.progress(0)
+                results = {}
+
+
+                i = 1
+                for feed in feedList:
+                    goodScore = getGoodMatch(feed, goodList)
+                    badScore = getBadMatch(feed, badList)
+                    finalScore = goodScore[0] - badScore[0]
+                    results[i] = [feed, finalScore]
+                    i = i + 1
+
+
+                results = getSimpleResult(results)
+                data = listSplit(results)
+
+                df = pd.DataFrame({"Feedback": feedList, "Score": data[0], "Result": data[1]})
+                df.to_excel("results.xlsx")
+
+
+
+                oldPositive = positive
+                oldNeutral = neutral
+                oldNegative = negative
+
+                positive = df[df["Score"] > 30].count()[0]
+                negative = df[df["Score"] < 30].count()[0]
+                neutral = (df.count()[0])-(positive+negative)
+
+                for percent_complete in range(100):
+                    time.sleep(0.1)
+                    my_bar.progress(percent_complete + 1)
+
+                st.success("Feedback Calculated!")
+                st.balloons()
+
+
+                # show
+
+
+                if st.button("Delete input data"):
+                    feedList = []
+                    text = None
+                    data = None
+                    my_bar = st.progress(0)
+                    for percent_complete in range(100):
+                        time.sleep(0.1)
+                        my_bar.progress(percent_complete + 1)
+
+
+
+
 
 
 
@@ -107,7 +179,7 @@ def getSimpleResult(dict):
     for i in dict:
         if dict[i][1] > 30:
             dict[i] = [dict[i][0],dict[i][1],'good']
-
+            pos
         elif dict[i][1] < -30:
             dict[i] = [dict[i][0],dict[i][1],'bad']
 
