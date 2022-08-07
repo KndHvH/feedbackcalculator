@@ -1,3 +1,8 @@
+import pathlib
+import sys
+
+sys.path.append(str(pathlib.Path().absolute()).split("/src")[0] + "/src")
+
 import streamlit as st
 import requests as req
 import re
