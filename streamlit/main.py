@@ -33,8 +33,12 @@ def main():
 
         st.session_state.count += 1
 
+    increment = st.button('Increment')
+    if increment:
+        st.session_state.count += 1
 
-
+    st.write('Count = ', st.session_state.count)
+    st.write('Count = ', positive)
 
     st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg")
 
@@ -54,7 +58,6 @@ def main():
 
                 if st.button("Add"):
                     trigger = 1
-                    my_bar = st.progress(0)
 
 
                     if data is not None:
@@ -64,15 +67,11 @@ def main():
 
                         for i in range(len(list)):
                             feedList.append(unidecode(list[i][0]))
+                        data = None
                     else:
                         feedList.append(unidecode(text))
+                        text = None
 
-
-
-
-                    for percent_complete in range(100):
-                        time.sleep(0.005)
-                        my_bar.progress(percent_complete + 1)
 
                     if trigger == 1:
                         st.success("Feedback Added!")
@@ -153,13 +152,6 @@ def main():
                         for percent_complete in range(100):
                             time.sleep(0.005)
                             my_bar.progress(percent_complete + 1)
-
-
-
-
-
-
-
 
 
 
