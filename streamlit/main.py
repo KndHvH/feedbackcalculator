@@ -29,6 +29,7 @@ def main():
 
 
 
+
     goodList = apiGood()
     badList = apiBad()
 
@@ -46,30 +47,27 @@ def main():
         # upload csv
         data = st.file_uploader("Multiple Feedback", type="csv")
 
-        if data is not None or text is not None:
+
+        if st.button("Add"):
+            st.session_state.trigger = 1
+
+            if data is not None:
+
+                df = pd.read_csv(data, sep=';')
+                list = df.values.tolist()
+
+                for i in range(len(list)):
+                    st.session_state.feedList.append(unidecode(list[i][0]))
+                data = None
+            else:
+                st.session_state.feedList.append(unidecode(text))
+                text = None
 
 
-            if st.button("Add"):
-                st.session_state.trigger = 1
-
-
-                if data is not None:
-
-                    df = pd.read_csv(data, sep=';')
-                    list = df.values.tolist()
-
-                    for i in range(len(list)):
-                        st.session_state.feedList.append(unidecode(list[i][0]))
-                    data = None
-                else:
-                    st.session_state.feedList.append(unidecode(text))
-                    text = None
-
-
-                if st.session_state.trigger == 1:
-                    st.success("Feedback Added!")
-                    time.sleep(5)
-                    st.session_state.trigger = 0
+            if st.session_state.trigger == 1:
+                st.success("Feedback Added!")
+                time.sleep(5)
+                st.session_state.trigger = 0
 
 
     with tab2:
@@ -77,12 +75,12 @@ def main():
 
         st.subheader("Totals")
 
+
+
         col1, col2, col3 = st.columns(3)
-        col1.metric("Positives", int(st.session_state.positive), int(st.session_state.positive) - oldPositive)
-        col2.metric("Neutral", int(st.session_state.neutral), int(st.session_state.neutral) - oldNeutral,
-                    delta_color="off")
-        col3.metric("Negatives", int(st.session_state.negative), int(st.session_state.negative) - oldNegative,
-                    delta_color="inverse")
+        col1.metric("Positives", int(st.session_state.positive))
+        col2.metric("Neutral", int(st.session_state.neutral))
+        col3.metric("Negatives", int(st.session_state.negative))
 
         if st.session_state.feedList != []:
 
@@ -104,12 +102,6 @@ def main():
 
                     df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
                     df.to_excel("results.xlsx")
-
-
-
-                    oldPositive = int(st.session_state.positive)
-                    oldNeutral = int(st.session_state.neutral)
-                    oldNegative = int(st.session_state.negative)
 
                     st.session_state.positive = int(df[df["Score"] > 30].count()[0])
                     st.session_state.negative = int(df[df["Score"] < 30].count()[0])
