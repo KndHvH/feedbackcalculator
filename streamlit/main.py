@@ -11,17 +11,18 @@ from pyngrok import ngrok
 from unidecode import unidecode
 from PIL import Image
 
-feedList = []
-results = {}
-positive = 0
-neutral = 0
-negative = 0
 
-oldPositive = positive
-oldNeutral = neutral
-oldNegative = negative
 
 def main():
+    feedList = []
+    results = {}
+    positive = 0
+    neutral = 0
+    negative = 0
+
+    oldPositive = positive
+    oldNeutral = neutral
+    oldNegative = negative
 
     goodList = apiGood()
     badList = apiBad()
