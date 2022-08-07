@@ -18,8 +18,8 @@ def main():
     goodList = apiGood()
     badList = apiBad()
 
-    st.image("./img.jpg")
-    st.markdown("# FeedBack calculator")
+    st.markdown("![img.jpg](img.jpg)"
+                "# FeedBack calculator")
 
     tab1, tab2 = st.tabs(["Import Data", "Results"])
     tab1.write("this is tab 1")
