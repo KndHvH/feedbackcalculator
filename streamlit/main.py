@@ -35,6 +35,8 @@ def main():
     st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg")
 
     st.title("Feedback Calculator")
+    st.cache(func=None, persist=False, allow_output_mutation=False, show_spinner=True, suppress_st_warning=False,
+             hash_funcs=None, max_entries=None, ttl=None)
 
     tab1, tab2 = st.tabs(["Import Data", "Results"])
     with tab1:
@@ -73,75 +75,68 @@ def main():
     with tab2:
         st.header("Results")
 
+        st.subheader("Totals")
+
+        col1, col2, col3 = st.columns(3)
+        col1.metric("Positives", int(st.session_state.positive), int(st.session_state.positive) - oldPositive)
+        col2.metric("Neutral", int(st.session_state.neutral), int(st.session_state.neutral) - oldNeutral,
+                    delta_color="off")
+        col3.metric("Negatives", int(st.session_state.negative), int(st.session_state.negative) - oldNegative,
+                    delta_color="inverse")
+
         if st.session_state.feedList != []:
 
             if st.button("Check Results"):
-                my_bar = st.progress(0)
 
-                st.session_state.trigger = 1
+                with st.spinner(text="Calculating..."):
 
-                i = 1
-                for feed in st.session_state.feedList:
-                    goodScore = getGoodMatch(feed, goodList)
-                    badScore = getBadMatch(feed, badList)
-                    finalScore = goodScore[0] - badScore[0]
-                    st.session_state.results[i] = [feed, finalScore]
-                    i = i + 1
-
-
-                results = getSimpleResult(st.session_state.results)
-                data = listSplit(results)
-
-                df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
-                df.to_excel("results.xlsx")
+                    i = 1
+                    for feed in st.session_state.feedList:
+                        goodScore = getGoodMatch(feed, goodList)
+                        badScore = getBadMatch(feed, badList)
+                        finalScore = goodScore[0] - badScore[0]
+                        st.session_state.results[i] = [feed, finalScore]
+                        i = i + 1
 
 
+                    results = getSimpleResult(st.session_state.results)
+                    data = listSplit(results)
 
-                oldPositive = int(st.session_state.positive)
-                oldNeutral = int(st.session_state.neutral)
-                oldNegative = int(st.session_state.negative)
-
-                st.session_state.positive = df[df["Score"] > 30].count()[0]
-                st.session_state.negative = df[df["Score"] < 30].count()[0]
-                st.session_state.neutral = (df.count()[0])-(st.session_state.positive+st.session_state.negative)
-
-                st.subheader("Totals")
-
-                col1, col2, col3 = st.columns(3)
-                col1.metric("Positives", int(st.session_state.positive), int(st.session_state.positive) - oldPositive)
-                col2.metric("Neutral", int(st.session_state.neutral), int(st.session_state.neutral) - oldNeutral, delta_color="off")
-                col3.metric("Negatives", int(st.session_state.negative), int(st.session_state.negative) - oldNegative, delta_color="inverse")
-
-                for percent_complete in range(100):
-                    time.sleep(0.05)
-                    my_bar.progress(percent_complete + 1)
+                    df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
+                    df.to_excel("results.xlsx")
 
 
-                if st.session_state.trigger == 1:
+
+                    oldPositive = int(st.session_state.positive)
+                    oldNeutral = int(st.session_state.neutral)
+                    oldNegative = int(st.session_state.negative)
+
+                    st.session_state.positive = int(df[df["Score"] > 30].count()[0])
+                    st.session_state.negative = int(df[df["Score"] < 30].count()[0])
+                    st.session_state.neutral = int(df.count()[0])-(st.session_state.positive+st.session_state.negative)
+
                     st.success("Feedback Calculated!")
                     st.balloons()
-                    time.sleep(5)
-                    st.session_state.trigger = 0
-
-                st.subheader("Result Table")
-                st.table(df)
 
                 st.subheader("Manage table")
                 with open('results.xlsx', 'rb') as f:
                     st.download_button('Download Table', f,
                                        file_name='results.xlsx')
 
-
-
-
                 if st.button("Delete input data"):
+                    for percent_complete in range(100):
+                        time.sleep(0.005)
+                        my_bar.progress(percent_complete + 1)
+                        st.warning("Data deleted")
                     st.session_state.feedList = []
                     text = None
                     data = None
                     my_bar = st.progress(0)
-                    for percent_complete in range(100):
-                        time.sleep(0.005)
-                        my_bar.progress(percent_complete + 1)
+
+                st.subheader("Result Table")
+                st.table(df)
+
+
 
 
 
