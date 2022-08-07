@@ -14,18 +14,20 @@ from PIL import Image
 
 
 def main():
-    if 'count' not in st.session_state:
-        st.session_state.count = 0
+    if 'feedList' not in st.session_state:
         st.session_state.feedList = []
+    if 'results' not in st.session_state:
         st.session_state.results = {}
+    if 'positive' not in st.session_state:
         st.session_state.positive = 0
+    if 'neutral' not in st.session_state:
         st.session_state.neutral = 0
+    if 'negative' not in st.session_state:
         st.session_state.negative = 0
-
-
+    if 'trigger' not in st.session_state:
         st.session_state.trigger = 0
 
-        st.session_state.count += 1
+
 
     goodList = apiGood()
     badList = apiBad()
