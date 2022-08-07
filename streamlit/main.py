@@ -18,9 +18,7 @@ def main():
     goodList = apiGood()
     badList = apiBad()
 
-
-
-    st.image(Image.open('img.jpg'))
+    st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg")
 
     st.title("Feedback Calculator")
 
