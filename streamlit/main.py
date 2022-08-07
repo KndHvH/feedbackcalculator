@@ -84,10 +84,7 @@ def main():
         st.header("Results")
 
 
-        col1, col2, col3 = st.columns(3)
-        col1.metric("Positives", positive, positive-oldPositive)
-        col2.metric("Neutral", neutral, neutral - oldNeutral,delta_color="off")
-        col3.metric("Negatives",negative , negative - oldNegative ,delta_color="inverse")
+
 
         if data is not None or text is not None:
 
@@ -120,6 +117,11 @@ def main():
                 positive = df[df["Score"] > 30].count()[0]
                 negative = df[df["Score"] < 30].count()[0]
                 neutral = (df.count()[0])-(positive+negative)
+
+                col1, col2, col3 = st.columns(3)
+                col1.metric("Positives", positive, positive - oldPositive)
+                col2.metric("Neutral", neutral, neutral - oldNeutral, delta_color="off")
+                col3.metric("Negatives", negative, negative - oldNegative, delta_color="inverse")
 
                 for percent_complete in range(100):
                     time.sleep(0.05)
