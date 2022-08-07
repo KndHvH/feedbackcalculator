@@ -97,9 +97,9 @@ def main():
 
 
 
-                oldPositive = st.session_state.positive
-                oldNeutral = st.session_state.neutral
-                oldNegative = st.session_state.negative
+                oldPositive = int(st.session_state.positive)
+                oldNeutral = int(st.session_state.neutral)
+                oldNegative = int(st.session_state.negative)
 
                 st.session_state.positive = df[df["Score"] > 30].count()[0]
                 st.session_state.negative = df[df["Score"] < 30].count()[0]
@@ -108,9 +108,9 @@ def main():
                 st.subheader("Totals")
 
                 col1, col2, col3 = st.columns(3)
-                col1.metric("Positives", st.session_state.positive, st.session_state.positive - oldPositive)
-                col2.metric("Neutral", st.session_state.neutral, st.session_state.neutral - oldNeutral, delta_color="off")
-                col3.metric("Negatives", st.session_state.negative, st.session_state.negative - oldNegative, delta_color="inverse")
+                col1.metric("Positives", int(st.session_state.positive), int(st.session_state.positive) - oldPositive)
+                col2.metric("Neutral", int(st.session_state.neutral), int(st.session_state.neutral) - oldNeutral, delta_color="off")
+                col3.metric("Negatives", int(st.session_state.negative), int(st.session_state.negative) - oldNegative, delta_color="inverse")
 
                 for percent_complete in range(100):
                     time.sleep(0.05)
