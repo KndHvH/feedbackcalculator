@@ -14,12 +14,7 @@ from PIL import Image
 
 
 def main():
-    @st.cache
-    def bind_socket():
-        return True
-
-    declare = bind_socket()
-    if declare:
+    if "declare" not in st.session_state:
         feedList = []
         results = {}
         positive = 0
@@ -35,7 +30,7 @@ def main():
 
         trigger = 0
 
-        declare = False
+        st.session_state.declare = True
 
     st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg")
 
