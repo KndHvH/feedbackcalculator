@@ -14,29 +14,36 @@ from unidecode import unidecode
 
 def main():
 
-    html_temp = """ <div style ="background-color:cyan;padding:30px">
+    html_temp = """ <div style ="background-color:cyan;padding:16px">
                       <h1 style = "color:white;text-align:center;">Feedback Calculator</h1>
                     </dic>
                 """
 
     st.markdown(html_temp, unsafe_allow_html = True)
-    c = st.container()
-    st.write("This will show last")
-    c.write("This will show first")
-    c.write("This will show second")
 
-    #json api import
+
+
+
     goodList = apiGood()
     badList = apiBad()
 
 
-    # test.json file import (test only)
+    with st.expander("Input Data"):
+        #upload text
+        text = st.text_area("Single Feedback")
+        #upload csv
+        data = st.file_uploader("Multiple Feedback",type="csv")
+
+        clicked = st.button("Click me")
+
     feedList=[]
     df = pd.read_csv("dataTest.csv",sep=';')
     list=df.values.tolist()
 
     for i in range(len(list)):
         feedList.append(unidecode(list[i][0]))
+
+
 
     results={}
 
