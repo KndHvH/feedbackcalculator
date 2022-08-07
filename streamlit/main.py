@@ -14,27 +14,26 @@ from unidecode import unidecode
 
 def main():
 
-    html_temp = """ <div style ="background-color:cyan;padding:16px">
-                      <h1 style = "color:white;text-align:center;">Feedback Calculator</h1>
-                    </dic>
-                """
-
-    st.markdown(html_temp, unsafe_allow_html = True)
-
-
-
 
     goodList = apiGood()
     badList = apiBad()
 
+    st.image("img.jpg")
+    st.markdown("# FeedBack calculator")
 
-    with st.expander("Input Data"):
-        #upload text
-        text = st.text_area("Single Feedback")
-        #upload csv
-        data = st.file_uploader("Multiple Feedback",type="csv")
+    tab1, tab2 = st.tabs(["Import Data", "Results"])
+    tab1.write("this is tab 1")
 
-        clicked = st.button("Click me")
+
+
+    #upload text
+    text = st.text_area("Single Feedback")
+    #upload csv
+    data = st.file_uploader("Multiple Feedback",type="csv")
+    tab2.write("this is tab 2")
+    st.markdown("# FeedBack calculator")
+
+    clicked = st.button("Click me")
 
     feedList=[]
     df = pd.read_csv("dataTest.csv",sep=';')
@@ -42,7 +41,6 @@ def main():
 
     for i in range(len(list)):
         feedList.append(unidecode(list[i][0]))
-
 
 
     results={}
