@@ -8,7 +8,7 @@ from fuzzywuzzy import process
 from fuzzywuzzy import fuzz
 from pyngrok import ngrok
 from unidecode import unidecode
-
+from PIL import Image
 
 
 
@@ -18,8 +18,11 @@ def main():
     goodList = apiGood()
     badList = apiBad()
 
-    st.markdown("![img.jpg](img.jpg)"
-                "# FeedBack calculator")
+
+
+    st.image(Image.open('img.jpg'))
+
+    st.title("Feedback Calculator")
 
     tab1, tab2 = st.tabs(["Import Data", "Results"])
     tab1.write("this is tab 1")
