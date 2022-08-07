@@ -16,29 +16,19 @@ from PIL import Image
 def main():
     if 'count' not in st.session_state:
         st.session_state.count = 0
-        feedList = []
-        results = {}
-        positive = 0
-        neutral = 0
-        negative = 0
+        st.session_state.feedList = []
+        st.session_state.results = {}
+        st.session_state.positive = 0
+        st.session_state.neutral = 0
+        st.session_state.negative = 0
 
-        oldPositive = positive
-        oldNeutral = neutral
-        oldNegative = negative
 
-        goodList = apiGood()
-        badList = apiBad()
-
-        trigger = 0
+        st.session_state.trigger = 0
 
         st.session_state.count += 1
 
-    increment = st.button('Increment')
-    if increment:
-        st.session_state.count += 1
-
-    st.write('Count = ', st.session_state.count)
-    st.write('Count = ', positive)
+    goodList = apiGood()
+    badList = apiBad()
 
     st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg")
 
@@ -57,7 +47,7 @@ def main():
 
 
                 if st.button("Add"):
-                    trigger = 1
+                    st.session_state.trigger = 1
 
 
                     if data is not None:
@@ -66,17 +56,17 @@ def main():
                         list = df.values.tolist()
 
                         for i in range(len(list)):
-                            feedList.append(unidecode(list[i][0]))
+                            st.session_state.feedList.append(unidecode(list[i][0]))
                         data = None
                     else:
-                        feedList.append(unidecode(text))
+                        st.session_state.feedList.append(unidecode(text))
                         text = None
 
 
-                    if trigger == 1:
+                    if st.session_state.trigger == 1:
                         st.success("Feedback Added!")
                         time.sleep(5)
-                        trigger = 0
+                        st.session_state.trigger = 0
 
 
         with tab2:
@@ -90,48 +80,50 @@ def main():
                 if st.button("Check Results"):
                     my_bar = st.progress(0)
 
-                    trigger = 1
+                    st.session_state.trigger = 1
 
                     i = 1
-                    for feed in feedList:
+                    for feed in st.session_state.feedList:
                         goodScore = getGoodMatch(feed, goodList)
                         badScore = getBadMatch(feed, badList)
                         finalScore = goodScore[0] - badScore[0]
-                        results[i] = [feed, finalScore]
+                        st.session_state.results[i] = [feed, finalScore]
                         i = i + 1
 
 
-                    results = getSimpleResult(results)
+                    results = getSimpleResult(st.session_state.results)
                     data = listSplit(results)
 
-                    df = pd.DataFrame({"Feedback": feedList, "Score": data[0], "Result": data[1]})
+                    df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
                     df.to_excel("results.xlsx")
 
 
 
-                    oldPositive = positive
-                    oldNeutral = neutral
-                    oldNegative = negative
+                    oldPositive = st.session_state.positive
+                    oldNeutral = st.session_state.neutral
+                    oldNegative = st.session_state.negative
 
-                    positive = df[df["Score"] > 30].count()[0]
-                    negative = df[df["Score"] < 30].count()[0]
-                    neutral = (df.count()[0])-(positive+negative)
+                    st.session_state.positive = df[df["Score"] > 30].count()[0]
+                    st.session_state.negative = df[df["Score"] < 30].count()[0]
+                    st.session_state.neutral = (df.count()[0])-(st.session_state.positive+st.session_state.negative)
+
+                    st.subheader("Totals")
 
                     col1, col2, col3 = st.columns(3)
-                    col1.metric("Positives", positive, positive - oldPositive)
-                    col2.metric("Neutral", neutral, neutral - oldNeutral, delta_color="off")
-                    col3.metric("Negatives", negative, negative - oldNegative, delta_color="inverse")
+                    col1.metric("Positives", st.session_state.positive, st.session_state.positive - oldPositive)
+                    col2.metric("Neutral", st.session_state.neutral, st.session_state.neutral - oldNeutral, delta_color="off")
+                    col3.metric("Negatives", st.session_state.negative, st.session_state.negative - oldNegative, delta_color="inverse")
 
                     for percent_complete in range(100):
                         time.sleep(0.05)
                         my_bar.progress(percent_complete + 1)
 
 
-                    if trigger == 1:
+                    if st.session_state.trigger == 1:
                         st.success("Feedback Calculated!")
                         st.balloons()
                         time.sleep(5)
-                        trigger = 0
+                        st.session_state.trigger = 0
 
                     st.subheader("Result Table")
                     st.table(df)
@@ -145,7 +137,7 @@ def main():
 
 
                     if st.button("Delete input data"):
-                        feedList = []
+                        st.session_state.feedList = []
                         text = None
                         data = None
                         my_bar = st.progress(0)
