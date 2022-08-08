@@ -1,2 +1,0 @@
-good = https://kndhvh.github.io/good.json
-bad = https://kndhvh.github.io/bad.json
