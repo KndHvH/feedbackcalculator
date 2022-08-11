@@ -14,6 +14,7 @@ from PIL import Image
 
 
 def main():
+    # declarando variaveis utilizando session state (tem uma forma melhor de fazer isso)
     if 'feedList' not in st.session_state:
         st.session_state.feedList = []
     if 'results' not in st.session_state:
@@ -24,50 +25,50 @@ def main():
         st.session_state.neutral = 0
     if 'negative' not in st.session_state:
         st.session_state.negative = 0
-    if 'trigger' not in st.session_state:
-        st.session_state.trigger = 0
+    if 'df' not in st.session_state:
+        st.session_state.df = st.session_state.df[0:0]
 
 
-
-
+    #importando as 2 apis para o fuzzy comparar
     goodList = apiGood()
     badList = apiBad()
 
-    st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg")
-
+    # titulo e foto do site
+    st.image("https://aedv.es/wp-content/uploads/2020/06/encuesta-aedv-1024x512.jpg",width=395)
     st.title("Feedback Calculator")
-    st.cache(func=None, persist=False, allow_output_mutation=False, show_spinner=True, suppress_st_warning=False,
-             hash_funcs=None, max_entries=None, ttl=None)
 
-    tab1, tab2 = st.tabs(["Import Data", "Results"])
+    # divisao de 3 paginas, sendo para importar os dados, ver os resultados e um tutorial de como usar o site
+    tab1, tab2 , tab3= st.tabs(["Import Data", "Results","Tutorial"])
     with tab1:
         st.header("Import Data")
         # upload text
         text = st.text_area("Single Feedback")
+
         # upload csv
-        data = st.file_uploader("Multiple Feedback", type="csv")
+        csv = st.file_uploader("Multiple Feedback", type="csv")
 
 
-        if st.button("Add"):
-            st.session_state.trigger = 1
+        if csv is not None:
+            if st.button("Add"):
+                idf = pd.read_csv(data, sep=';')
+                list = idf.values.tolist()
 
-            if data is not None:
-
-                df = pd.read_csv(data, sep=';')
-                list = df.values.tolist()
 
                 for i in range(len(list)):
                     st.session_state.feedList.append(unidecode(list[i][0]))
-                data = None
-            else:
-                st.session_state.feedList.append(unidecode(text))
-                text = None
-
-
-            if st.session_state.trigger == 1:
+                csv = None
                 st.success("Feedback Added!")
-                time.sleep(5)
-                st.session_state.trigger = 0
+                time.sleep(3)
+                st.experimental_rerun()
+
+        elif text != "":
+            if st.button("Add"):
+                st.session_state.feedList.append(unidecode(text))
+                st.success("Feedback Added!")
+                time.sleep(3)
+                st.experimental_rerun()
+
+
 
 
     with tab2:
@@ -100,35 +101,36 @@ def main():
                     results = getSimpleResult(st.session_state.results)
                     data = listSplit(results)
 
-                    df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
-                    df.to_excel("results.xlsx")
+                    st.session_state.df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
+                    st.session_state.df.to_excel("results.xlsx")
 
-                    st.session_state.positive = int(df[df["Score"] > 30].count()[0])
-                    st.session_state.negative = int(df[df["Score"] < 30].count()[0])
-                    st.session_state.neutral = int(df.count()[0])-(st.session_state.positive+st.session_state.negative)
-
+                    time.sleep(2)
                     st.success("Feedback Calculated!")
                     st.balloons()
-
-                st.subheader("Manage table")
-                with open('results.xlsx', 'rb') as f:
-                    st.download_button('Download Table', f,
-                                       file_name='results.xlsx')
-
-                if st.button("Delete input data"):
-                    for percent_complete in range(100):
-                        time.sleep(0.005)
-                        my_bar.progress(percent_complete + 1)
-                        st.warning("Data deleted")
-                    st.session_state.feedList = []
-                    text = None
-                    data = None
-                    my_bar = st.progress(0)
-
-                st.subheader("Result Table")
-                st.table(df)
+                    time.sleep(2)
+                    st.experimental_rerun()
 
 
+        if len(st.session_state.df.index)>0:
+            st.subheader("Manage table")
+            with open('results.xlsx', 'rb') as f:
+                st.download_button('Download Table', f,
+                                   file_name='results.xlsx')
+
+            if st.button("Delete input data"):
+                with st.spinner(text="Deleting..."):
+                    time.sleep(2)
+                    st.experimental_memo.clear()
+                    st.session_state.df = st.session_state.df[0:0]
+                    st.warning("Data deleted")
+                    time.sleep(2)
+                    st.experimental_rerun()
+
+            st.subheader("Result Table")
+            st.table(st.session_state.df)
+
+    with tab3:
+        st.text("tutorial")
 
 
 
