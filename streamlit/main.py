@@ -15,6 +15,7 @@ from PIL import Image
 
 def main():
 
+
     # declarando variaveis utilizando session state (tem uma forma melhor de fazer isso)
     if 'feedList' not in st.session_state:
         # variavel para armazenar todos os feedbacks inputados
@@ -94,7 +95,6 @@ def main():
 
 
 
-
     with tab2:
         st.header("Results")
 
@@ -106,12 +106,14 @@ def main():
                     # para cada termo na lista de feedback, ele ira comparar com as 2 listas da api, calcular as pontua-
                     # ções e armazenar o resultado no dicionario results
                     i = 0
+
                     for feed in st.session_state.feedList:
                         goodScore = getGoodMatch(feed, goodList)
                         badScore = getBadMatch(feed, badList)
                         finalScore = goodScore[0] - badScore[0]
                         st.session_state.results[i] = [feed, finalScore]
                         i = i + 1
+
 
                     # baseado no resultado do dicionario, ele ira utilizar a pontuação para classificar entre
                     # good, bad e neutral
@@ -226,6 +228,7 @@ def getSimpleResult(dict):
         else:
             dict[i] = [dict[i][0],dict[i][1],'neutral']
     return dict
+
 
 def colResults(positive,neutral,negative,oldpos,oldneu,oldneg):
     st.subheader("Totals")
