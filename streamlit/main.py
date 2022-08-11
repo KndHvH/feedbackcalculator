@@ -14,6 +14,7 @@ from PIL import Image
 
 
 def main():
+
     # declarando variaveis utilizando session state (tem uma forma melhor de fazer isso)
     if 'feedList' not in st.session_state:
         st.session_state.feedList = []
