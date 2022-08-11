@@ -17,16 +17,31 @@ def main():
 
     # declarando variaveis utilizando session state (tem uma forma melhor de fazer isso)
     if 'feedList' not in st.session_state:
+        # variavel para armazenar todos os feedbacks inputados
         st.session_state.feedList = []
     if 'results' not in st.session_state:
+        # variavel para armazenar os resultados calculados
         st.session_state.results = {}
     if 'positive' not in st.session_state:
+        # contagem de positivos
         st.session_state.positive = 0
+    if 'oldpos' not in st.session_state:
+        # contagem de positivos
+        st.session_state.oldpos = 0
     if 'neutral' not in st.session_state:
+        # contagem de neutros
         st.session_state.neutral = 0
+    if 'oldneu' not in st.session_state:
+        # contagem de neutros
+        st.session_state.oldneu = 0
     if 'negative' not in st.session_state:
+        # contagem de negativos
         st.session_state.negative = 0
+    if 'oldneg' not in st.session_state:
+        # contagem de negativos
+        st.session_state.oldneg = 0
     if 'df' not in st.session_state:
+        # dataframe para o display e download dos resultados
         st.session_state.df = pd.DataFrame(st.session_state.feedList)
 
 
@@ -42,28 +57,36 @@ def main():
     tab1, tab2 , tab3= st.tabs(["Import Data", "Results","Tutorial"])
     with tab1:
         st.header("Import Data")
-        # upload text
+        # feature para usuario fazer upload manual(escrever o feedback)
         text = st.text_area("Single Feedback")
 
-        # upload csv
+        # feature para usuario fazer upload em csv
         csv = st.file_uploader("Multiple Feedback", type="csv")
 
-
+        # true se o usuario fizer o upload de um csv
         if csv is not None:
+            # e apertar o botao
             if st.button("Add"):
+                # le o csv e armazena em um df, depois converte para uma lista
                 idf = pd.read_csv(csv, sep=';')
                 list = idf.values.tolist()
 
-
+                # para cada i no tamanho da lista, da um append na lista de feedbacks totais
                 for i in range(len(list)):
                     st.session_state.feedList.append(unidecode(list[i][0]))
+
+                # apos o procedimento esvazia o input para nao ter dados duplicados
                 csv = None
+
                 st.success("Feedback Added!")
                 time.sleep(3)
                 st.experimental_rerun()
 
+        # true se o usuario fizer um upload manual (elif para o usuario poder trabalhar com os dois campos simultaniamente
+        # sem dados duplicados)
         elif text != "":
             if st.button("Add"):
+                # append na lista de feedbacks totais com o texto inserido
                 st.session_state.feedList.append(unidecode(text))
                 st.success("Feedback Added!")
                 time.sleep(3)
@@ -75,10 +98,13 @@ def main():
     with tab2:
         st.header("Results")
 
+        #se a lista de feedbacks armazenados nao estiver vazia
         if st.session_state.feedList != []:
             if st.button("Check Results"):
                 with st.spinner(text="Calculating..."):
 
+                    # para cada termo na lista de feedback, ele ira comparar com as 2 listas da api, calcular as pontua-
+                    # ções e armazenar o resultado no dicionario results
                     i = 0
                     for feed in st.session_state.feedList:
                         goodScore = getGoodMatch(feed, goodList)
@@ -87,37 +113,49 @@ def main():
                         st.session_state.results[i] = [feed, finalScore]
                         i = i + 1
 
-
+                    # baseado no resultado do dicionario, ele ira utilizar a pontuação para classificar entre
+                    # good, bad e neutral
                     results = getSimpleResult(st.session_state.results)
+
+                    # separa as colunas do dicionario e converte em listas separadas para construir o df
                     data = listSplit(results)
 
+                    # cria o df com base nos resultados
                     st.session_state.df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
+                    # cria uma copia do df para excel para download
                     st.session_state.df.to_excel("results.xlsx")
 
-                    oldpos = st.session_state.positive
-                    oldneg = st.session_state.negative
-                    oldneu = st.session_state.neutral
+                    # bloco para as metricas de resultado, (mostra os totais e compara com o resultado anterior)
+                    st.session_state.oldpos = st.session_state.positive
+                    st.session_state.oldneg = st.session_state.negative
+                    st.session_state.oldneu = st.session_state.neutral
 
                     st.session_state.positive = int(st.session_state.df[st.session_state.df["Score"] > 30].count()[0])
                     st.session_state.negative = int(st.session_state.df[st.session_state.df["Score"] < -30].count()[0])
                     st.session_state.neutral = int(st.session_state.df.count()[0]) - (st.session_state.positive + st.session_state.negative)
 
-                    st.subheader("Totals")
-
-                    col1, col2, col3 = st.columns(3)
-                    col1.metric("Positives", st.session_state.positive, delta=(st.session_state.positive)-oldpos)
-                    col2.metric("Neutral", st.session_state.neutral, delta=(st.session_state.neutral)-oldneu, delta_color="off")
-                    col3.metric("Negatives", st.session_state.negative, delta=(st.session_state.negative)-oldneg, delta_color="inverse")
-
                     time.sleep(2)
                     st.success("Feedback Calculated!")
-                    st.balloons()
+
+                    # mostra o resultado do bloco mensionado
+                    colResults(st.session_state.positive, st.session_state.neutral, st.session_state.negative,
+                               st.session_state.oldpos, st.session_state.oldneu, st.session_state.oldneg)
+                    # st.balloons()
                     time.sleep(2)
                     st.experimental_rerun()
+
+        # se a feedback list esta vazia é porque nao tem dado armazenado para mostrar
         else:
             st.warning("no data to share!")
 
+        # true se o tamanho da df de resultado for maior que 0
         if len(st.session_state.df.index)>0:
+
+            # mostra o resultado do bloco mensionado
+            colResults(st.session_state.positive,st.session_state.neutral,st.session_state.negative,
+                       st.session_state.oldpos,st.session_state.oldneu,st.session_state.oldneg)
+
+
             st.subheader("Manage table")
             with open('results.xlsx', 'rb') as f:
                 st.download_button('Download Table', f,
@@ -127,8 +165,8 @@ def main():
                 with st.spinner(text="Deleting..."):
                     time.sleep(2)
                     st.experimental_memo.clear()
-                    st.session_state.df = st.session_state.df[0:0]
-                    st.session_state.feedList = []
+                    for key in st.session_state.keys():
+                        del st.session_state[key]
                     st.warning("Data deleted")
                     time.sleep(2)
                     st.experimental_rerun()
@@ -189,7 +227,12 @@ def getSimpleResult(dict):
             dict[i] = [dict[i][0],dict[i][1],'neutral']
     return dict
 
-
+def colResults(positive,neutral,negative,oldpos,oldneu,oldneg):
+    st.subheader("Totals")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Positives", positive, delta=(positive) - oldpos)
+    col2.metric("Neutral", neutral, delta=neutral-oldneu,delta_color="off")
+    col3.metric("Negatives", negative, delta=negative - oldneg,delta_color="inverse")
 
 
 if __name__ == '__main__':
