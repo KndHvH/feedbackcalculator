@@ -26,7 +26,7 @@ def main():
     if 'negative' not in st.session_state:
         st.session_state.negative = 0
     if 'df' not in st.session_state:
-        st.session_state.df = st.session_state.df[0:0]
+        st.session_state.df = pd.DataFrame(st.session_state.feedList)
 
 
     #importando as 2 apis para o fuzzy comparar
@@ -50,7 +50,7 @@ def main():
 
         if csv is not None:
             if st.button("Add"):
-                idf = pd.read_csv(data, sep=';')
+                idf = pd.read_csv(csv, sep=';')
                 list = idf.values.tolist()
 
 
@@ -74,22 +74,11 @@ def main():
     with tab2:
         st.header("Results")
 
-        st.subheader("Totals")
-
-
-
-        col1, col2, col3 = st.columns(3)
-        col1.metric("Positives", int(st.session_state.positive))
-        col2.metric("Neutral", int(st.session_state.neutral))
-        col3.metric("Negatives", int(st.session_state.negative))
-
         if st.session_state.feedList != []:
-
             if st.button("Check Results"):
-
                 with st.spinner(text="Calculating..."):
 
-                    i = 1
+                    i = 0
                     for feed in st.session_state.feedList:
                         goodScore = getGoodMatch(feed, goodList)
                         badScore = getBadMatch(feed, badList)
@@ -104,12 +93,28 @@ def main():
                     st.session_state.df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
                     st.session_state.df.to_excel("results.xlsx")
 
+                    oldpos = st.session_state.positive
+                    oldneg = st.session_state.negative
+                    oldneu = st.session_state.neutral
+
+                    st.session_state.positive = int(st.session_state.df[st.session_state.df["Score"] > 30].count()[0])
+                    st.session_state.negative = int(st.session_state.df[st.session_state.df["Score"] < -30].count()[0])
+                    st.session_state.neutral = int(st.session_state.df.count()[0]) - (st.session_state.positive + st.session_state.negative)
+
+                    st.subheader("Totals")
+
+                    col1, col2, col3 = st.columns(3)
+                    col1.metric("Positives", st.session_state.positive, delta=(st.session_state.positive)-oldpos)
+                    col2.metric("Neutral", st.session_state.neutral, delta=(st.session_state.neutral)-oldneu, delta_color="off")
+                    col3.metric("Negatives", st.session_state.negative, delta=(st.session_state.negative)-oldneg, delta_color="inverse")
+
                     time.sleep(2)
                     st.success("Feedback Calculated!")
                     st.balloons()
                     time.sleep(2)
                     st.experimental_rerun()
-
+        else:
+            st.warning("no data to share!")
 
         if len(st.session_state.df.index)>0:
             st.subheader("Manage table")
@@ -122,6 +127,7 @@ def main():
                     time.sleep(2)
                     st.experimental_memo.clear()
                     st.session_state.df = st.session_state.df[0:0]
+                    st.session_state.feedList = []
                     st.warning("Data deleted")
                     time.sleep(2)
                     st.experimental_rerun()
