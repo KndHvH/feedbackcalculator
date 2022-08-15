@@ -1,3 +1,4 @@
+import random
 
 import streamlit as st
 import requests as req
@@ -5,11 +6,15 @@ import re
 import json
 import pandas as pd
 import time
+import matplotlib.pyplot as plt
+from random import randrange
 from fuzzywuzzy import process
 from fuzzywuzzy import fuzz
 from pyngrok import ngrok
 from unidecode import unidecode
 from PIL import Image
+import seaborn as sns
+
 
 #dashboard version
 
@@ -27,25 +32,18 @@ def main():
     if 'positive' not in st.session_state:
         # contagem de positivos
         st.session_state.positive = 0
-    if 'oldpos' not in st.session_state:
-        # contagem de positivos
-        st.session_state.oldpos = 0
+    if 'total' not in st.session_state:
+        # contagem total
+        st.session_state.total = 0
     if 'neutral' not in st.session_state:
         # contagem de neutros
         st.session_state.neutral = 0
-    if 'oldneu' not in st.session_state:
-        # contagem de neutros
-        st.session_state.oldneu = 0
     if 'negative' not in st.session_state:
         # contagem de negativos
         st.session_state.negative = 0
-    if 'oldneg' not in st.session_state:
-        # contagem de negativos
-        st.session_state.oldneg = 0
     if 'df' not in st.session_state:
         # dataframe para o display e download dos resultados
         st.session_state.df = pd.DataFrame(st.session_state.feedList)
-
 
     #importando as 2 apis para o fuzzy comparar
     goodList = apiGood()
@@ -124,26 +122,22 @@ def main():
                     data = listSplit(results)
 
                     # cria o df com base nos resultados
-                    st.session_state.df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1]})
+                    st.session_state.df = pd.DataFrame({"Feedback": st.session_state.feedList, "Score": data[0], "Result": data[1],"NPS":"NPS"})
                     # cria uma copia do df para excel para download
                     st.session_state.df.to_excel("results.xlsx")
 
-                    # bloco para as metricas de resultado, (mostra os totais e compara com o resultado anterior)
-                    st.session_state.oldpos = st.session_state.positive
-                    st.session_state.oldneg = st.session_state.negative
-                    st.session_state.oldneu = st.session_state.neutral
+
 
                     st.session_state.positive = int(st.session_state.df[st.session_state.df["Score"] > 30].count()[0])
                     st.session_state.negative = int(st.session_state.df[st.session_state.df["Score"] < -30].count()[0])
                     st.session_state.neutral = int(st.session_state.df.count()[0]) - (st.session_state.positive + st.session_state.negative)
 
+                    st.session_state.total = st.session_state.df.count()[0]
+
                     time.sleep(2)
                     st.success("Feedback Calculated!")
 
-                    # mostra o resultado do bloco mensionado
-                    colResults(st.session_state.positive, st.session_state.neutral, st.session_state.negative,
-                               st.session_state.oldpos, st.session_state.oldneu, st.session_state.oldneg)
-                    # st.balloons()
+
                     time.sleep(2)
                     st.experimental_rerun()
 
@@ -154,29 +148,125 @@ def main():
         # true se o tamanho da df de resultado for maior que 0
         if len(st.session_state.df.index)>0:
 
+
+
             # mostra o resultado do bloco mensionado
-            colResults(st.session_state.positive,st.session_state.neutral,st.session_state.negative,
-                       st.session_state.oldpos,st.session_state.oldneu,st.session_state.oldneg)
+
+            with st.expander("Manage table", expanded=True):
+                st.title("test")
+                # with open('results.xlsx', 'rb') as f:
+                #     st.download_button('Download Table', f,
+                #                        file_name='results.xlsx')
+                #
+                # if st.button("Delete input data"):
+                #     with st.spinner(text="Deleting..."):
+                #         time.sleep(2)
+                #         st.experimental_memo.clear()
+                #         for key in st.session_state.keys():
+                #             del st.session_state[key]
+                #         st.warning("Data deleted")
+                #         time.sleep(2)
+                #         st.experimental_rerun()
+
+                #seaborn nps table
+
+                sns.set_theme(style="darkgrid")
+
+                # Initialize the matplotlib figure
+                f, ax = plt.subplots(figsize=(6, 5))
+
+                # Load the example car crash dataset
+                crashes = sns.load_dataset("car_crashes").sort_values("total", ascending=False)
+
+                # Plot the total crashes
+                sns.barplot(x="NPS", y=st.session_state.df, data=st.session_state.df,
+                            label="Positive", color="g")
+
+                sns.barplot(x="NPS", y=st.session_state.df, data=st.session_state.df,
+                            label="Neutral", color="y")
+
+                sns.barplot(x="NPS", y=st.session_state.df, data=st.session_state.df,
+                            label="Negative", color="r")
+
+                # Add a legend and informative axis label
+                ax.legend(ncol=2, loc="lower right", frameon=True)
+                ax.set(xlim=(0, 24), ylabel="",
+                       xlabel="Automobile collisions per billion miles")
+                sns.despine(left=True, bottom=True)
 
 
-            st.subheader("Manage table")
-            with open('results.xlsx', 'rb') as f:
-                st.download_button('Download Table', f,
-                                   file_name='results.xlsx')
+                st.pyplot(f)
+            col1, col2, col3 = st.columns([3,3,3])
+            with col1:
+                with st.expander("", expanded=True):
+                    st.metric("", st.session_state.positive,
+                              delta=(f"{st.session_state.positive / st.session_state.total * 100:.2f}%"),
+                              help="Total of Positives occurrences. Percentage referring to the total of examples"
+                              )
 
-            if st.button("Delete input data"):
-                with st.spinner(text="Deleting..."):
-                    time.sleep(2)
-                    st.experimental_memo.clear()
-                    for key in st.session_state.keys():
-                        del st.session_state[key]
-                    st.warning("Data deleted")
-                    time.sleep(2)
-                    st.experimental_rerun()
+                    if st.button("Show",key='1'):
+                        x = 1 #st.session_state.df = st.session_state.df["Result"=="good"]
+            with col2:
+                with st.expander("Neutral", expanded=True):
+                    st.metric("", st.session_state.neutral,
+                              delta=(f"{st.session_state.neutral / st.session_state.total * 100:.2f}%"),
+                              delta_color="off",
+                              help="Total of Neutral occurrences. Percentage referring to the total of examples"
+                              )
+                    if st.button("Show",key='2'):
+                        x = 1 #st.session_state.df = st.session_state.df["Result"=="good"]
+            with col3:
+                with st.expander("Negatives", expanded=True):
+                    st.metric("", st.session_state.negative,
+                              delta=(f"{st.session_state.negative / st.session_state.total * 100:.2f}%"),
+                              delta_color="inverse",
+                              help="Total of Negatives occurrences. Percentage referring to the total of examples"
+                              )
+                    if st.button("Show",key='3'):
+                        x = 1 #st.session_state.df = st.session_state.df["Result"=="good"]
 
-            st.subheader("Result Table")
-            st.table(st.session_state.df)
+        with st.expander("Result Table", expanded=True):
+                keys = ["blaaaaaa","ble","bli","blo","blu","bl",]
+                occ = []
+                rel = []
+                for i in range(len(keys)):
+                    x = randrange(1,10)
+                    y = random.uniform(0, 1.0)
+                    occ.append(x)
+                    rel.append(y)
+                df = (
+                            pd.DataFrame({"Keyword/Keyphrase":keys, "N_occurrences":occ , "Relevancy":rel})
+                         .sort_values(by="Relevancy", ascending=False)
+                         .reset_index(drop=True)
+                    )
+                #AgGrid(st.session_state.df)
+                st.table(st.session_state.df)
+                st.header("")
 
+                df.index +=   1
+
+                # Add styling
+                cmGreen = sns.light_palette("green", as_cmap=True)
+                cmRed = sns.light_palette("red", as_cmap=True)
+                df = df.style.background_gradient(
+                    cmap=cmGreen,
+                    subset=[
+                        "Relevancy",
+                    ],
+                )
+                # df = df.set_table_styles([
+                #     {"selector": "tr", "props": "line-height: 40px;"},
+                #     {"selector": "td,th", "props": "line-height: inherit; padding: 0;"}
+                # ])
+
+
+                format_dictionary = {
+                    "Relevancy": "{:.2%}",
+                }
+
+                df = df.format(format_dictionary)
+
+                st.table(df)
     with tab3:
         st.text("tutorial")
 
@@ -229,14 +319,6 @@ def getSimpleResult(dict):
         else:
             dict[i] = [dict[i][0],dict[i][1],'neutral']
     return dict
-
-
-def colResults(positive,neutral,negative,oldpos,oldneu,oldneg):
-    st.subheader("Totals")
-    col1, col2, col3 = st.columns(3)
-    col1.metric("Positives", positive, delta=(positive) - oldpos)
-    col2.metric("Neutral", neutral, delta=neutral-oldneu,delta_color="off")
-    col3.metric("Negatives", negative, delta=negative - oldneg,delta_color="inverse")
 
 
 if __name__ == '__main__':
